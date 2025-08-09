@@ -1,14 +1,11 @@
 <div id="header-wrap">
-
-    
-
     <header id="header">
         <div class="container-fluid">
             <div class="row">
 
                 <div class="col-md-2">
                     <div class="main-logo">
-                        <a href="index.html"><img src="assets/images/main-logo.png" alt="logo"></a>
+                        <a href="/"><img src="assets/images/main-logo.png" alt="logo"></a>
                     </div>
 
                 </div>
@@ -35,17 +32,17 @@
                                 <li class="menu-item has-sub">
                                     <a href="#pages" class="nav-link">{{ Auth::user()->name }}</a>
                                     <ul>
-                                        <li class="active"><a href="{{ route('profile.edit') }}">Profile</a></li>
+                                        <li><a href="{{ route('profile.edit') }}">Profile</a></li>
                                         <li>
                                             <form action="{{ route('logout') }}" method="post" style="display: inline-block;">
                                                 @csrf
                                                 <button type="submit" style="background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; cursor:pointer;padding-left:15px;">Logout</button">
                                             </form>
                                         </li>
-                                        
+
                                     </ul>
                                 </li>
-                                
+
                                 @endauth
                                 @guest
                                         <li class="menu-item"><a href="{{ route('login') }}" class="user-account for-buy"><span>Login</span></a></li>
