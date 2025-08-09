@@ -1,32 +1,6 @@
 <div id="header-wrap">
 
-    <div class="top-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
-                    <div class="right-element">
-                        @auth
-                            <a href="{{ route('profile.edit') }}" class="user-account for-buy"><i
-                                class="icon icon-user"></i><span>{{ Auth::user()->name }}</span></a>
-                            <form action="{{ route('logout') }}" method="post" style="display:inline;">
-                                @csrf
-                                <button type="submit" style="background:none; border:none; padding:0; color:#5A5555; cursor:pointer;">
-                                    <i class="icon icon-logout"></i> Logout
-                                </button>
-                            </form>
-                        @endauth
-                        @guest
-                            <a href="{{ route('login') }}" class="user-account for-buy"><span>Login</span></a>
-                            <a href="{{ route('register') }}" class="user-account for-buy"><span>Register</span></a>
-                        @endguest
-                    </div><!--top-right-->
-                </div>
-
-            </div>
-        </div>
-    </div><!--top-content-->
+    
 
     <header id="header">
         <div class="container-fluid">
@@ -57,6 +31,26 @@
                                     </ul>
                                 </li>
                                 <li class="{{request()->is('dashboard') ? 'active' : ''}} menu-item"><a href="/dashboard">Dashboard</a></li>
+                                @auth
+                                <li class="menu-item has-sub">
+                                    <a href="#pages" class="nav-link">{{ Auth::user()->name }}</a>
+                                    <ul>
+                                        <li class="active"><a href="{{ route('profile.edit') }}">Profile</a></li>
+                                        <li>
+                                            <form action="{{ route('logout') }}" method="post" style="display: inline-block;">
+                                                @csrf
+                                                <button type="submit" style="background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; cursor:pointer;padding-left:15px;">Logout</button">
+                                            </form>
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+                                
+                                @endauth
+                                @guest
+                                        <li class="menu-item"><a href="{{ route('login') }}" class="user-account for-buy"><span>Login</span></a></li>
+                                        <li class="menu-item"><a href="{{ route('register') }}" class="user-account for-buy"><span>Register</span></a></li>
+                                @endguest
                             </ul>
 
                             <div class="hamburger">
