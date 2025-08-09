@@ -7,12 +7,20 @@
                 </div>
                 <div class="col-md-6">
                     <div class="right-element">
-                        <a href="#" class="user-account for-buy"><i
-                                class="icon icon-user"></i><span>Account</span></a>
-                        <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
-									$)</span></a>
-
-
+                        @auth
+                            <a href="{{ route('profile.edit') }}" class="user-account for-buy"><i
+                                class="icon icon-user"></i><span>{{ Auth::user()->name }}</span></a>
+                            <form action="{{ route('logout') }}" method="post" style="display:inline;">
+                                @csrf
+                                <button type="submit" style="background:none; border:none; padding:0; color:#5A5555; cursor:pointer;">
+                                    <i class="icon icon-logout"></i> Logout
+                                </button>
+                            </form>
+                        @endauth
+                        @guest
+                            <a href="{{ route('login') }}" class="user-account for-buy"><span>Login</span></a>
+                            <a href="{{ route('register') }}" class="user-account for-buy"><span>Register</span></a>
+                        @endguest
                     </div><!--top-right-->
                 </div>
 
