@@ -27,4 +27,8 @@ class HomeController extends Controller
         $categories = Category::with('books')->get();
         return view('books.show',compact('book','categories'));
     }
+    public function dashboard(){
+        $categories = Category::with('books')->get();
+        return view('dashboard',compact('categories'));
+    }
 }
