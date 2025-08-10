@@ -2442,3 +2442,8 @@ footer#footer {
     width: 100%;
   }
 }
+
+.danger-button:hover {
+    background-color: #ff0000; 
+    border-color: #ff0000;
+}
