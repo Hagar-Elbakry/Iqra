@@ -7,67 +7,30 @@
                     <div class="title">
                         <span>Some quality items</span>
                     </div>
-                    <h2 class="section-title">Featured Books</h2>
+                    <h2 class="section-title">{{ isset($Is_home) ? 'Featured Books' : 'All Books' }}</h2>
                 </div>
 
                 <div class="product-list" data-aos="fade-up">
                     <div class="row">
 
+                        @foreach ($books as $book)
                         <div class="col-md-3">
                             <div class="product-item">
                                 <figure class="product-style">
-                                    <img src="assets/images/product-item1.jpg" alt="Books" class="product-item">
+                                    <a href="{{ route('books.show', $book->id) }}"><img src="{{ asset($book->image) }}" alt="Books" class="product-item"></a>
                                     <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Borrow</button>
                                 </figure>
                                 <figcaption>
-                                    <h3>Simple way of piece life</h3>
-                                    <span>Armor Ramsey</span>
-                                    <div class="item-price">quantity</div>
+                                    <h3>{{ $book->title }}</h3>
+                                    <span>{{ $book->author }}</span>
+                                    <div class="item-price">quantity : {{ $book->quantity }}</div>
                                 </figcaption>
                             </div>
                         </div>
+                        @endforeach
+                        
 
-                        <div class="col-md-3">
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="assets/images/product-item2.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Borrow</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>Great travel at desert</h3>
-                                    <span>Sanchit Howdy</span>
-                                    <div class="item-price">quantity</div>
-                                </figcaption>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="assets/images/product-item3.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Borrow</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>The lady beauty Scarlett</h3>
-                                    <span>Arthur Doyle</span>
-                                    <div class="item-price">quantity</div>
-                                </figcaption>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="assets/images/product-item4.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Borrow</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>Once upon a time</h3>
-                                    <span>Klien Marry</span>
-                                    <div class="item-price">quantity</div>
-                                </figcaption>
-                            </div>
-                        </div>
+                        
 
                     </div><!--ft-books-slider-->
                 </div><!--grid-->
@@ -75,16 +38,19 @@
 
             </div><!--inner-content-->
         </div>
-
+        @if(isset($Is_home))
         <div class="row">
             <div class="col-md-12">
 
                 <div class="btn-wrap align-right">
-                    <a href="#" class="btn-accent-arrow">View all products <i
+                    <a href="{{ route('books.index') }}" class="btn-accent-arrow">View all products <i
                             class="icon icon-ns-arrow-right"></i></a>
                 </div>
 
             </div>
         </div>
+        @else
+            {{ $books->links() }}
+        @endif
     </div>
 </section>

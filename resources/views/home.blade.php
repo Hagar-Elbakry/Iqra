@@ -45,7 +45,6 @@
 
 @include('partials._featured-books')
 
-@include('partials._book-detail')
 
 @include('partials._popular-book')
 </x-app>

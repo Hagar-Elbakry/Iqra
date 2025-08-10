@@ -11,7 +11,13 @@ class HomeController extends Controller
         $banner = Book::whereIn('title', [
                             'Life of the wild',
                             'Birds Gonna be happy'])->get();
-        return view('home',compact('banner'));
+        $books = Book::whereIn('id',[3,6,5,10])->get();
+        $Is_home = true;
+        return view('home',compact('banner','books','Is_home'));
+    }
+    public function index(){
+        $books = Book::simplePaginate(8);
+        return view('books.index',compact('books'));
     }
     public function show($book){
         $book = Book::findOrFail($book);
