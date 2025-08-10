@@ -35,15 +35,19 @@
                 </td>
                 <td class="text-center">
                     @if(!$book->pivot->is_returned)
-                        <form method="POST" action="{{ route('return', $book) }}">
+                        <form method="POST" action="{{ route('return', $book->id) }}">
                             @csrf
                             <x-primary-button class="ms-4" style="height: 40px;">
                                 {{ __('Return') }}
                             </x-primary-button>
                         </form>
                     @else
-                            -
+                        <x-primary-button returned class="ms-4" style="height: 32px;">
+                            {{ __('Returned') }}
+                        </x-primary-button>
                     @endif
+
+
                 </td>
             </tr>
         @endforeach
