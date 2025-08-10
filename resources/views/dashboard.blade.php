@@ -1,5 +1,5 @@
 <x-app>
-    <x-nav/>
+    <x-nav :categories="$categories"/>
     <div style="padding: 50px">
     <table class="table">
         <thead>

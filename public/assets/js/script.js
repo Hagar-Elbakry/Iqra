@@ -145,7 +145,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll(".tabs .tab");
     const tabContents = document.querySelectorAll(".tab-content [data-tab-content]");
-    const navLinks = document.querySelectorAll(".nav-category-link");
 
     function activateTab(categoryId) {
         tabs.forEach(t => t.classList.remove("active"));
@@ -167,20 +166,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    navLinks.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const categoryId = this.dataset.categoryId;
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get("category");
 
-            document.querySelector("#popular-books").scrollIntoView({ behavior: "smooth" });
-            activateTab(categoryId);
-        });
-    });
-
-    if (tabs.length > 0) {
-        const firstCategoryId = tabs[0].dataset.tabTarget.replace("#tab-", "");
-        activateTab(firstCategoryId);
+    if (categoryParam) {
+        activateTab(categoryParam);
+        document.querySelector("#popular-books").scrollIntoView({ behavior: "smooth" });
+    } else {
+        if (tabs.length > 0) {
+            const firstCategoryId = tabs[0].dataset.tabTarget.replace("#tab-", "");
+            activateTab(firstCategoryId);
+        }
     }
 });
+
+
+
 
 
