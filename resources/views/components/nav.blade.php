@@ -21,13 +21,14 @@
                                     <ul>
                                         @foreach($categories as $category)
                                             <li>
-                                                <a href="#popular-books" class="nav-category-link" data-category-id="{{ $category->id }}">
+                                                <a href="{{ url('/?category=' . $category->id) }}">
                                                     {{ $category->name }}
                                                 </a>
                                             </li>
                                         @endforeach
                                     </ul>
                                 </li>
+
                                 <li class="{{request()->is('dashboard') ? 'active' : ''}} menu-item"><a href="/dashboard">Dashboard</a></li>
                                 @auth
                                 <li class="menu-item has-sub">
