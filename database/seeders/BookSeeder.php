@@ -220,6 +220,23 @@ class BookSeeder extends Seeder
             'quantity' => 5,
             'category_id' => 4,
         ]);
+        Book::create([
+            'title' => 'Life of the wild',
+            'description' => 'A thrilling adventure novel set in a remote wilderness.',
+            'image' => 'assets/images/books/main-banner1.jpg',
+            'author' => 'Eileen Thornton',
+            'quantity' => 5,
+            'category_id' => 4,
+        ]);
+        Book::create([
+            'title' => 'Birds Gonna be happy',
+            'description' => 'A no-nonsense guide to bird care.',
+            'image' => 'assets/images/books/main-banner2.jpg',
+            'author' => 'Eileen Thornton',
+            'quantity' => 5,
+            'category_id' => 4,
+        ]);
+        
 
         Book::create([
             'title' => 'After Dark',

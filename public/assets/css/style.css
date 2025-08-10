@@ -2447,3 +2447,19 @@ footer#footer {
     background-color: #ff0000; 
     border-color: #ff0000;
 }
+
+.single-image {
+    width: 100%;
+    max-width: 450px;   
+    height: auto;      
+    object-fit: cover;  
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    transition: transform 0.3s ease; 
+}
+
+.single-image:hover {
+    transform: scale(1.05); 
+}
+
+

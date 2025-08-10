@@ -14,10 +14,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="assets/icomoon/icomoon.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/icomoon/icomoon.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 
 </head>
 
@@ -33,7 +33,7 @@
 
                 <div class="footer-item">
                     <div class="company-brand">
-                        <img src="assets/images/main-logo.png" alt="logo" class="footer-logo">
+                        <img src="{{ asset('assets/images/main-logo.png') }}" alt="logo" class="footer-logo">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis sed ptibus liberolectus
                             nonet psryroin. Amet sed lorem posuere sit iaculis amet, ac urna. Adipiscing fames
                             semper erat ac in suspendisse iaculis.</p>
@@ -138,12 +138,12 @@
 
     </div>
 </footer>
-<script src="assets/js/jquery-1.11.0.min.js"></script>
+<script src="{{ asset('assets/js/jquery-1.11.0.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/script.js"></script>
+<script src="{{ asset('assets/js/plugins.js') }}"></script>
+<script src="{{ asset('assets/js/script.js') }}"></script>
 
 </body>
 
