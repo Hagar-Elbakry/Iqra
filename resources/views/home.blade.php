@@ -1,5 +1,5 @@
 <x-app>
-<x-nav/>
+<x-nav :categories="$categories"/>
 
 <section id="billboard">
 

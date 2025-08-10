@@ -5,7 +5,7 @@
 
                 <div class="col-md-2">
                     <div class="main-logo">
-                        <a href="/"><img src="assets/images/main-logo.png" alt="logo"></a>
+                        <a href="/"><img src="{{ asset('assets/images/main-logo.png') }}" alt="logo"></a>
                     </div>
 
                 </div>
@@ -19,12 +19,13 @@
                                 <li class="menu-item has-sub">
                                     <a href="#pages" class="nav-link">Categories</a>
                                     <ul>
-                                        <li class="active"><a href="index.html">All Genre</a></li>
-                                        <li><a href="index.html">Business</a></li>
-                                        <li><a href="index.html">Technology</a></li>
-                                        <li><a href="index.html">Romantic</a></li>
-                                        <li><a href="index.html">Adventure</a></li>
-                                        <li><a href="index.html">Fictional</a></li>
+                                        @foreach($categories as $category)
+                                            <li>
+                                                <a href="#popular-books" class="nav-category-link" data-category-id="{{ $category->id }}">
+                                                    {{ $category->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li class="{{request()->is('dashboard') ? 'active' : ''}} menu-item"><a href="/dashboard">Dashboard</a></li>

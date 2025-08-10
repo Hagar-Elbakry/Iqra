@@ -139,3 +139,48 @@
 
 
 })(jQuery);
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tabs .tab");
+    const tabContents = document.querySelectorAll(".tab-content [data-tab-content]");
+    const navLinks = document.querySelectorAll(".nav-category-link");
+
+    function activateTab(categoryId) {
+        tabs.forEach(t => t.classList.remove("active"));
+        tabContents.forEach(c => c.classList.remove("active"));
+
+        const targetTab = document.querySelector(`.tabs .tab[data-tab-target="#tab-${categoryId}"]`);
+        const targetContent = document.querySelector(`#tab-${categoryId}`);
+
+        if (targetTab && targetContent) {
+            targetTab.classList.add("active");
+            targetContent.classList.add("active");
+        }
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            const targetId = this.dataset.tabTarget.replace("#tab-", "");
+            activateTab(targetId);
+        });
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const categoryId = this.dataset.categoryId;
+
+            document.querySelector("#popular-books").scrollIntoView({ behavior: "smooth" });
+            activateTab(categoryId);
+        });
+    });
+
+    if (tabs.length > 0) {
+        const firstCategoryId = tabs[0].dataset.tabTarget.replace("#tab-", "");
+        activateTab(firstCategoryId);
+    }
+});
+
+
