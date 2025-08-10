@@ -22,8 +22,12 @@
                                 <p>{{ $book->description }}.</p>
                                 <div class="item-price">quantity : {{ $book->quantity }}</div>
                                 <div class="btn-wrap">
-                                    <a href="#" class="btn-accent-arrow">Borrow it now <i
-                                            class="icon icon-ns-arrow-right"></i></a>
+                                    
+                                    <form method="POST" action="{{ route('borrow', $book->id) }}">
+                                        @csrf
+                                        <button type="submit"  class="btn-accent-arrow">Borrow it now <i
+                                            class="icon icon-ns-arrow-right"></i> </button>
+                                    </form>
                                 </div>
                             </div>
 
