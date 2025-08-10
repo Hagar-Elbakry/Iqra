@@ -2397,6 +2397,26 @@ footer#footer {
   bottom: 380px;
   bottom: 0;
 }
+.product-style .out-of-stock {
+  position: absolute;
+  background: #eb0808;
+  color: #fff;
+  width: 100%;
+  margin: 0;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 3;
+  bottom: 300px;
+  bottom: -65px;
+  left: 0;
+  z-index: 9;
+  transition: 0.3s ease-out;
+}
+
+.product-style:hover .out-of-stock {
+  bottom: 380px;
+  bottom: 0;
+}
 
 .product-item figcaption {
   margin-top: 30px;

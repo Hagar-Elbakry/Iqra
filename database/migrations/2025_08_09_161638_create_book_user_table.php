@@ -20,7 +20,6 @@ return new class extends Migration
             $table->boolean('is_returned')->default(false);
             $table->timestamp('borrow_date')->nullable();
             $table->timestamp('return_date')->nullable();
-            $table->unique(['user_id', 'book_id']);
             $table->timestamps();
         });
     }

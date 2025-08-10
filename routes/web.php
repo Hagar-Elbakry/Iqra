@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -13,8 +14,10 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 
 Route::get('/books',[HomeController::class,'index'])->name('books.index');
 Route::get('/books/{book}', [HomeController::class, 'show'])->name('books.show');
-Route::get('/dashboard', [HomeController::class, 'dashboard'])
+Route::get('/dashboard', [BorrowController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/borrow/{book}', [BorrowController::class, 'borrow'])->name('borrow');
+Route::post('/return/{book}', [BorrowController::class, 'return'])->name('return');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

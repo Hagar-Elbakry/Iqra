@@ -18,7 +18,14 @@
                             <div class="product-item">
                                 <figure class="product-style">
                                     <a href="{{ route('books.show', $book->id) }}"><img src="{{ asset($book->image) }}" alt="Books" class="product-item"></a>
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Borrow</button>
+                                    @if($book->quantity == 0)
+                                        <button type="submit" class="out-of-stock">Out of stock</button>
+                                    @else
+                                    <form action="{{ route('borrow', $book->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="add-to-cart" data-product-tile="add-to-cart">Borrow</button>
+                                    </form>
+                                    @endif
                                 </figure>
                                 <figcaption>
                                     <h3>{{ $book->title }}</h3>
