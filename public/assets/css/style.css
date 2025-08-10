@@ -2442,3 +2442,39 @@ footer#footer {
     width: 100%;
   }
 }
+
+.danger-button:hover {
+    background-color: #ff0000; 
+    border-color: #ff0000;
+}
+
+.single-image {
+    width: 100%;
+    max-width: 450px;   
+    height: auto;      
+    object-fit: cover;  
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    transition: transform 0.3s ease; 
+}
+
+.single-image:hover {
+    transform: scale(1.05); 
+}
+
+.tab-content [data-tab-content] {
+    display: none;
+}
+.tab-content [data-tab-content].active {
+    display: block;
+}
+.tabs .tab.active {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    cursor: pointer;
+}
+.tabs .tab {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
+}

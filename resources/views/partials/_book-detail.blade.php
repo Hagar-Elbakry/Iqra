@@ -7,22 +7,20 @@
 
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-center">
                         <figure class="products-thumb">
-                            <img src="assets/images/single-image.jpg" alt="book" class="single-image">
+                            <img src="{{ asset($book->image) }}" alt="book" class="single-image">
                         </figure>
                     </div>
 
                     <div class="col-md-6">
                         <div class="product-entry">
-                            <h2 class="section-title divider">Best Selling Book</h2>
+                            <h2 class="section-title divider">{{ $book->title }}</h2>
 
                             <div class="products-content">
-                                <div class="author-name">By Timbur Hood</div>
-                                <h3 class="item-title">Birds gonna be happy</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet,
-                                    libero ipsum enim pharetra hac.</p>
-                                <div class="item-price">quantity</div>
+                                <div class="author-name">By {{ $book->author }}</div>
+                                <p>{{ $book->description }}.</p>
+                                <div class="item-price">quantity : {{ $book->quantity }}</div>
                                 <div class="btn-wrap">
                                     <a href="#" class="btn-accent-arrow">Borrow it now <i
                                             class="icon icon-ns-arrow-right"></i></a>
