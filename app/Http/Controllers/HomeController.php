@@ -13,22 +13,18 @@ class HomeController extends Controller
                             'Life of the wild',
                             'Birds Gonna be happy'])->get();
         $books = Book::whereIn('id',[3,6,5,10])->get();
-        $categories = Category::with('books')->get();
         $Is_home = true;
-        return view('home',compact('banner','books','Is_home','categories'));
+        return view('home',compact('banner','books','Is_home'));
     }
     public function index(){
         $books = Book::simplePaginate(8);
-        $categories = Category::with('books')->get();
-        return view('books.index',compact('books','categories'));
+        return view('books.index',compact('books'));
     }
     public function show($book){
         $book = Book::findOrFail($book);
-        $categories = Category::with('books')->get();
-        return view('books.show',compact('book','categories'));
+        return view('books.show',compact('book'));
     }
     public function dashboard(){
-        $categories = Category::with('books')->get();
-        return view('dashboard',compact('categories'));
+        return view('dashboard');
     }
 }
