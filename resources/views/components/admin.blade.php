@@ -24,7 +24,22 @@
 </head>
 <body>
 
-{{$slot}}
+<div class="container-scroller">
+    <!-- partial:partials/_sidebar.html -->
+    <x-admin-sidebar/>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <x-admin-nav/>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                {{$slot}}
+            </div>
+                <x-admin-footer/>
+        </div>
+    </div>
+</div>
 
 <script src="{{asset('assets/dashboard/vendors/js/vendor.bundle.base.js')}}"></script>
 <!-- endinject -->
