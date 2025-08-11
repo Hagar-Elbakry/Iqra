@@ -1,5 +1,10 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+
+    @isset($url)
+    <form method="POST" action="/register/{{$url}}">
+        @else
+    <form method="POST" action="{{route('register')}}">
+        @endisset
         @csrf
 
         <!-- Name -->

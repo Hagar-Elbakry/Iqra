@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -12,8 +15,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
+class RegisteredUserController extends Controller implements HasMiddleware
 {
+
+    public static function middleware(): array{
+        return [
+            new Middleware('guest', ['except' => 'logout']),
+            new Middleware('guest:admin', ['except' => 'logout'])
+        ];
+    }
+
+
     /**
      * Display the registration view.
      */
@@ -47,4 +59,22 @@ class RegisteredUserController extends Controller
 
         return redirect(route('home'));
     }
+
+    public function showAdminRegistrationForm() {
+        return view('auth.register', ['url' => 'admin']);
+    }
+
+
+    public function storeAdmin(Request $request) {
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Admin::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $data['password'] = Hash::make($data['password']);
+         Admin::create($data);
+        return redirect(route('admin.dashboard'));
+    }
+
+
 }
