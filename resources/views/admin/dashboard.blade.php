@@ -7,12 +7,12 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">Students</h3>
+                                <h3 class="mb-0">{{ $stdCount }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-success ">
-                                <span class="mdi mdi-arrow-top-right icon-item"></span>
+                            <div class="icon {{ $stdCount > 10 ? 'icon-box-success' : 'icon-box-danger' }}">
+                                <span class="mdi {{ $stdCount > 10 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left' }}"></span>
                             </div>
                         </div>
                     </div>
@@ -26,12 +26,12 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">Books</h3>
+                                <h3 class="mb-0">{{ $bookCount }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-success">
-                                <span class="mdi mdi-arrow-top-right icon-item"></span>
+                            <div class="icon {{ $bookCount > 10 ? 'icon-box-success' : 'icon-box-danger' }}">
+                                <span class="mdi {{ $bookCount > 10 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left' }}"></span>
                             </div>
                         </div>
                     </div>
@@ -45,12 +45,12 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">Borrowed Books</h3>
+                                <h3 class="mb-0">{{ $borrowCount }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-danger">
-                                <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                            <div class="icon {{ $borrowCount > 10 ? 'icon-box-success' : 'icon-box-danger' }}">
+                                <span class="mdi {{ $borrowCount > 10 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left' }}"></span>
                             </div>
                         </div>
                     </div>
