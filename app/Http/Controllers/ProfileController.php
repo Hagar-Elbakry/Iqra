@@ -20,7 +20,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
-            
+
         ]);
     }
 
@@ -42,7 +42,7 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('uploads', 'public');
+            $path = $request->file('avatar')->store('uploads/users-avatar', 'public');
             $data['avatar'] = $path;
 
             if ($request->user()->avatar) {
