@@ -12,7 +12,9 @@ class AdminController extends Controller
 {
 
     public function index() {
-        return view('admin.dashboard');
+        $users = User::all();
+        $borrowedBooks =  User::with('books')->get();
+        return view('admin.dashboard',compact('users','borrowedBooks'));
     }
 
     public function edit(Admin $admin) {

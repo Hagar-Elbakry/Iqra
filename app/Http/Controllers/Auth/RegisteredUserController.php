@@ -72,7 +72,7 @@ class RegisteredUserController extends Controller implements HasMiddleware
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $data['password'] = Hash::make($data['password']);
-         Admin::create($data);
+        Admin::create($data);
         return redirect(route('admin.dashboard'));
     }
 
