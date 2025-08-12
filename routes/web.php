@@ -26,7 +26,7 @@ Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books'
 Route::get('/admin/books/create', [BookController::class, 'create'])->middleware(['web','auth:admin'])->name('admin.books.create');
 Route::post('/admin/books', [BookController::class, 'store'])->middleware(['web','auth:admin'])->name('admin.books.store');
 Route::get('/admin/books/{book}/edit', [BookController::class, 'edit'])->middleware(['web','auth:admin'])->name('admin.books.edit');
-Route::post('/admin/books/{book}', [BookController::class, 'update'])->middleware(['web','auth:admin'])->name('admin.books.update');
+Route::patch('/admin/books/{book}', [BookController::class, 'update'])->middleware(['web','auth:admin'])->name('admin.books.update');
 Route::delete('/admin/books/{book}', [BookController::class, 'destroy'])->middleware(['web','auth:admin'])->name('admin.books.destroy');
 
 Route::get('/books',[HomeController::class,'index'])->name('books.index');

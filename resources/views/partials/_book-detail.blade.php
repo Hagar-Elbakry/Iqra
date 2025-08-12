@@ -9,7 +9,7 @@
 
                     <div class="col-md-6 text-center">
                         <figure class="products-thumb">
-                            <img src="{{ asset($book->image) }}" alt="book" class="single-image">
+                            <img src="{{ asset('storage/'.$book->image) }}" alt="book" class="single-image">
                         </figure>
                     </div>
 
@@ -22,7 +22,7 @@
                                 <p>{{ $book->description }}.</p>
                                 <div class="item-price">quantity : {{ $book->quantity }}</div>
                                 <div class="btn-wrap">
-                                    
+
                                     <form method="POST" action="{{ route('borrow', $book->id) }}">
                                         @csrf
                                         <button type="submit"  class="btn-accent-arrow">Borrow it now <i
