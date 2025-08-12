@@ -63,7 +63,9 @@ class BookController extends Controller
         );
 
         if(request()->hasFile('image')) {
-            Storage::delete(request('image'));
+            if ($book->image) {
+                Storage::delete($book->image);
+            }
             $data['image'] = request()->file('image')->store('books');
         }
         $book->update($data);
