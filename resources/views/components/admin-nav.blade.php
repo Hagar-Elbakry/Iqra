@@ -8,9 +8,33 @@
         </button>
         <ul class="navbar-nav w-100">
             <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                    <input type="text" class="form-control" placeholder="Search Students">
-                </form>
+                <ul class="navbar-nav w-100">
+    <li class="nav-item w-100">
+        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search"
+                method="post" action="{{ route('admin.students.search') }}"
+                style="display: flex; width: 100%;">
+                @csrf
+                <input type="text" name="id" class="form-control"
+                    placeholder="Search Students" required>
+                @error('id')
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            text: '{{ $message }}',
+                            showConfirmButton: true,
+                            timer: 4000,
+                            timerProgressBar: true,
+                            width: '300px'
+                        });
+                    </script>
+                @enderror
+                <button type="submit" class="btn btn-primary" style="margin-left: -1px;">
+                    <i class="mdi mdi-magnify"></i>
+                </button>
+        </form>
+    </li>
+</ul>
+
             </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">

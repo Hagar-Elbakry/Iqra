@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Corona Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/dashboard/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dashboard/vendors/css/vendor.bundle.base.css')}}">

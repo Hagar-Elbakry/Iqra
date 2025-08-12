@@ -84,7 +84,7 @@
                             @if($user->avatar)
                             <td class="text-center"><img src="{{asset('storage/'.$user->avatar)}}" alt="image" /></td>
                             @else
-                            <td class="text-center">-</td>
+                            <td class="text-center"><img src="{{asset('assets/images/default-avatar.jpg')}}" alt="image" /></td>
                             @endif
                             <td class="text-center"> {{ $user->name }} </td>
                             <td class="text-center"> {{ $user->email }} </td>
@@ -113,7 +113,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th> Client Name </th>
+                                <th> Client</th>
                                 <th> Book Title</th>
                                 <th> Category </th>
                                 <th> Borrow Date </th>
@@ -130,6 +130,8 @@
                                             <td>
                                                 @if($user->avatar)
                                                 <img src="{{ asset('storage/'.$user->avatar) }}" alt="image" />
+                                                @else
+                                                <img src="{{asset('assets/images/default-avatar.jpg')}}" alt="image" />
                                                 @endif
                                                 <span class="pl-2">{{ $user->name }}</span>
                                             </td>

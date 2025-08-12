@@ -12,4 +12,13 @@ class StudentController extends Controller
     public function __invoke(User $user) {
         return view('admin.students.show',compact('user'));
     }
+
+    public function search(Request $request) {
+        $id = $request->id;
+        $request->validate([
+            'id' => 'required|integer'
+        ]);
+        $user = User::findOrFail($id);
+        return redirect()->route('admin.student',$user->id);
+    }
 }

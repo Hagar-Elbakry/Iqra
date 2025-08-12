@@ -20,6 +20,7 @@ Route::post('/register/admin', [RegisteredUserController::class, 'storeAdmin']);
 Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/students/{user}', StudentController::class)->name('admin.student');
+Route::post('/admin/students/search', [StudentController::class, 'search'])->name('admin.students.search');
 Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books');
 Route::get('/admin/books/create', [BookController::class, 'create'])->name('admin.books.create');
 Route::post('/admin/books', [BookController::class, 'store'])->name('admin.books.store');
