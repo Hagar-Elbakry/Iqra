@@ -35,10 +35,10 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{route('admin.books.edit', $book)}}" class="btn btn-outline-warning btn-sm">Edit</a>
-                                        <form action="{{route('admin.books.destroy', $book)}}" method="POST" id="delete_book">
+                                        <form action="{{route('admin.books.destroy', $book)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger btn-sm ml-2" form="delete_book">Delete</button>
+                                            <button type="submit" class="btn btn-outline-danger btn-sm ml-2">Delete</button>
                                         </form>
                                     </div>
                                 </td>

@@ -79,14 +79,14 @@
                             <button class="btn btn-dark">Cancel</button>
                         </div>
                         <div>
-                            <form action="{{route('admin.books.destroy', $book)}}" method="POST" id="delete_book">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
+                                <button class="btn btn-danger" form="delete_book">Delete</button>
                         </div>
                     </div>
                 </form>
+        <form action="{{route('admin.books.destroy', $book)}}" method="POST" id="delete_book">
+        @csrf
+        @method('DELETE')
+        </form>
             </div>
         </div>
     </div>
