@@ -21,6 +21,7 @@ Route::post('/register/admin', [RegisteredUserController::class, 'storeAdmin'])-
 Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit')->middleware(['web','auth:admin']);
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['web','auth:admin'])->name('admin.dashboard');
 Route::get('/admin/students/{user}', StudentController::class)->middleware(['web','auth:admin'])->name('admin.student');
+Route::post('/admin/students/search', [StudentController::class, 'search'])->middleware(['web','auth:admin'])->name('admin.students.search');
 Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books')->middleware(['web','auth:admin']);
 Route::get('/admin/books/create', [BookController::class, 'create'])->middleware(['web','auth:admin'])->name('admin.books.create');
 Route::post('/admin/books', [BookController::class, 'store'])->middleware(['web','auth:admin'])->name('admin.books.store');
