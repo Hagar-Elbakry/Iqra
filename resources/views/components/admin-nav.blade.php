@@ -41,19 +41,30 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
-                        <img class="img-xs rounded-circle" src="{{asset('assets/dashboard/images/faces/face15.jpg')}}" alt="">
-                        <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                        @if(Auth::guard('admin')->user()->avatar)
+                            <img class="img-xs rounded-circle" src="{{ asset('storage/'.Auth::guard('admin')->user()->avatar) }}" alt="">
+                        @else
+                        <img class="img-xs rounded-circle" src="{{asset('assets/images/default-avatar.jpg')}}" alt="">
+                        @endif
+                        <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::guard('admin')->user()->name }}</p>
                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
+
+                    <a href="{{ route('admin.profile') }}" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                    <path fill-rule="evenodd"
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8
+                                            m8-7a7 7 0 0 0-5.468 11.37
+                                            C3.242 11.226 4.805 10 8 10
+                                            s4.757 1.225 5.468 2.37
+                                            A7 7 0 0 0 8 1"/>
                                 </svg>
                             </div>
                         </div>
@@ -61,17 +72,23 @@
                             <p class="preview-subject mb-1">Profile</p>
                         </div>
                     </a>
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-logout text-danger"></i>
+
+                    <form method="POST" action="/logout/admin">
+                        @csrf
+                        <button type="submit" class="dropdown-item preview-item"
+                                style="all:unset ; cursor: pointer; display: flex; align-items: center; width: 100%;">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-logout text-danger"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject mb-1">Log out</p>
-                        </div>
-                    </a>
+                            <div class="preview-item-content">
+                                <p class="preview-subject mb-1">Log out</p>
+                            </div>
+                        </button>
+                    </form>
                 </div>
             </li>
         </ul>
