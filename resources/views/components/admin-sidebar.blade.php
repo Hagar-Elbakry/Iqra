@@ -8,7 +8,11 @@
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="{{asset('assets/dashboard/images/faces/face15.jpg')}}" alt="">
+                        @if(Auth::guard('admin')->user()->avatar)
+                            <img class="img-xs rounded-circle" src="{{ asset('storage/'.Auth::guard('admin')->user()->avatar) }}" alt="">
+                        @else
+                        <img class="img-xs rounded-circle" src="{{asset('assets/images/default-avatar.jpg')}}" alt="">
+                        @endif
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">

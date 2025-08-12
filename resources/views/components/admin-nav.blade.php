@@ -41,7 +41,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
-                        <img class="img-xs rounded-circle" src="{{asset('assets/dashboard/images/faces/face15.jpg')}}" alt="">
+                        @if(Auth::guard('admin')->user()->avatar)
+                            <img class="img-xs rounded-circle" src="{{ asset('storage/'.Auth::guard('admin')->user()->avatar) }}" alt="">
+                        @else
+                        <img class="img-xs rounded-circle" src="{{asset('assets/images/default-avatar.jpg')}}" alt="">
+                        @endif
                         <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::guard('admin')->user()->name }}</p>
                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
@@ -49,7 +53,7 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                     <div class="dropdown-divider"></div>
 
-                    <a href="" class="dropdown-item preview-item">
+                    <a href="{{ route('admin.profile') }}" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

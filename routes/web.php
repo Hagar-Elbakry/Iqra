@@ -28,7 +28,9 @@ Route::post('/admin/books', [BookController::class, 'store'])->middleware(['web'
 Route::get('/admin/books/{book}/edit', [BookController::class, 'edit'])->middleware(['web','auth:admin'])->name('admin.books.edit');
 Route::post('/admin/books/{book}', [BookController::class, 'update'])->middleware(['web','auth:admin'])->name('admin.books.update');
 Route::delete('/admin/books/{book}', [BookController::class, 'destroy'])->middleware(['web','auth:admin'])->name('admin.books.destroy');
-
+Route::get('/admin/profile',[AdminController::class, 'ProfileIndex'])->middleware(['web','auth:admin'])->name('admin.profile');
+Route::post('/admin/profile',[AdminController::class, 'ProfileUpdate'])->middleware(['web','auth:admin'])->name('admin.profile.update');
+Route::post('/admin/password',[AdminController::class, 'PasswordUpdate'])->middleware(['web','auth:admin'])->name('admin.password.update');
 Route::get('/books',[HomeController::class,'index'])->name('books.index');
 Route::get('/books/{book}', [HomeController::class, 'show'])->name('books.show');
 Route::get('/dashboard', [BorrowController::class, 'index'])
