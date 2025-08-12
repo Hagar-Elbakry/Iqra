@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class AdminController extends Controller
         $borrowedBooks =  User::with('books')->get();
         $stdCount = User::count();
         $bookCount = Book::count();
-        $borrowCount = User::with('books')->count();
+        $borrowCount = DB::table('book_user')->count();
         return view('admin.dashboard',compact('users','borrowedBooks' , 'stdCount', 'bookCount', 'borrowCount'));
     }
 
