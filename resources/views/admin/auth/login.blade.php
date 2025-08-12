@@ -2,7 +2,8 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{route('login')}}">
+    <h4 class="text-center mb-4">Admin Login</h4>
+    <form method="POST" action="{{route('admin.login')}}">
         @csrf
 
         <!-- Email Address -->

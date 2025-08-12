@@ -75,7 +75,7 @@
 
                     <div class="dropdown-divider"></div>
 
-                    <form method="POST" action="/logout/admin">
+                    <form method="POST" action="{{route('admin.logout')}}">
                         @csrf
                         <button type="submit"
                                 class="dropdown-item preview-item"

@@ -3,8 +3,6 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\StudentController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -13,13 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/login/admin', [AuthenticatedSessionController::class, 'showAdminLoginForm'])->middleware('guest:admin');
-Route::get('/register/admin', [RegisteredUserController::class, 'showAdminRegistrationForm'])->middleware('guest:admin');
-Route::post('/login/admin', [AuthenticatedSessionController::class, 'adminLogin'])->middleware('guest:admin');
-Route::post('/logout/admin', [AuthenticatedSessionController::class, 'destroyAdmin'])->middleware('auth:admin');
-Route::post('/register/admin', [RegisteredUserController::class, 'storeAdmin'])->middleware('guest:admin');
 Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit')->middleware('auth:admin');
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth:admin')->name('admin.dashboard');
 Route::get('/admin/students/{user}', StudentController::class)->middleware('auth:admin')->name('admin.student');
 Route::post('/admin/students/search', [StudentController::class, 'search'])->middleware('auth:admin')->name('admin.students.search');
 Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books')->middleware('auth:admin');
@@ -31,6 +23,8 @@ Route::delete('/admin/books/{book}', [BookController::class, 'destroy'])->middle
 Route::get('/admin/profile',[AdminController::class, 'ProfileIndex'])->middleware('auth:admin')->name('admin.profile');
 Route::post('/admin/profile',[AdminController::class, 'ProfileUpdate'])->middleware('auth:admin')->name('admin.profile.update');
 Route::post('/admin/password',[AdminController::class, 'PasswordUpdate'])->middleware('auth:admin')->name('admin.password.update');
+
+
 Route::get('/books',[HomeController::class,'index'])->name('books.index');
 Route::get('/books/{book}', [HomeController::class, 'show'])->name('books.show');
 Route::get('/dashboard', [BorrowController::class, 'index'])
@@ -46,3 +40,5 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin-auth.php';
+
