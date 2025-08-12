@@ -54,6 +54,13 @@ class AuthenticatedSessionController extends Controller implements HasMiddleware
         return redirect('/');
     }
 
+    public function destroyAdmin(Request $request): RedirectResponse {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function showAdminLoginForm() {
         return view('auth.login', ['url' => 'admin']);
     }
