@@ -20,10 +20,11 @@
             <x-input-label for="image" :value="__('Image')" />
             @if(Auth::user()->avatar)
             <img src="{{ asset('storage/' . $user->avatar) }}" alt="" width="100" height="100" class="w-32 h-32 rounded-full object-cover"><br>
-            <label class="inline-flex items-center mt-2">
-            <input type="checkbox" name="remove_avatar" value="1" class="form-checkbox text-red-600">
-            <span class="ml-2 text-sm text-gray-700">{{ __('Remove current image') }}</span>
-        </label>
+            <label class="inline-flex items-center mt-2 space-x-2">
+                <input type="checkbox" name="remove_avatar" value="1" class="form-checkbox text-red-600">
+                <span class="text-sm text-gray-700" style="margin-top: -22px;">{{ __('Remove current image') }}</span>
+            </label>
+
             @else
             <img src="{{asset('assets/images/default-avatar.jpg')}}" width="100" height="100" alt="" class="w-32 h-32 rounded-full object-cover"><br>
             @endif
