@@ -10,7 +10,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" disabled value="Hagar" class="form-control" style="color: black"/>
+                                    <input type="text" disabled value="{{ $user->name }}" class="form-control" style="color: black"/>
                                 </div>
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Email Address</label>
                                 <div class="col-sm-9">
-                                    <input type="email" disabled value="hagar@gmail.com" class="form-control" style="color: black"/>
+                                    <input type="email" disabled value="{{ $user->email }}" class="form-control" style="color: black"/>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Email Verified At</label>
                                 <div class="col-sm-9">
-                                    <input type="email" disabled value="05-04-2000" class="form-control" style="color: black"/>
+                                    <input type="email" disabled value="{{ $user->email_verified_at ?? '-' }}" class="form-control" style="color: black"/>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Created At</label>
                                 <div class="col-sm-9">
-                                    <input type="email" disabled value="05-04-2000" class="form-control" style="color: black"/>
+                                    <input type="email" disabled value="{{ $user->created_at->format('d-m-Y') }}" class="form-control" style="color: black"/>
                                 </div>
                             </div>
                         </div>
@@ -63,15 +63,19 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($user->books as $book)
                             <tr>
-                                <td> Divergent </td>
-                                <td> Drama </td>
-                                <td> 04 Dec 2019 </td>
-                                <td> 04 Dec 2019 </td>
+                                <td> {{ $book->title }} </td>
+                                <td> {{ $book->category->name }} </td>
+                                <td>{{ \Carbon\Carbon::parse($book->pivot->borrow_date)->format('M d, Y') }} </td>
+                                <td> {{ \Carbon\Carbon::parse($book->pivot->return_date)->format('M d, Y') }} </td>
                                 <td>
-                                    <div class="badge badge-outline-success">Yes</div>
+                                                <div class="badge {{ $book->pivot->is_returned ? 'badge-outline-success' : 'badge-outline-danger' }}">
+                                                    {{ $book->pivot->is_returned ? 'Yes' : 'No' }}
+                                                </div>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

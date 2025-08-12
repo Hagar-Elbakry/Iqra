@@ -10,6 +10,6 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     public function __invoke(User $user) {
-        return view('admin.students.show');
+        return view('admin.students.show',compact('user'));
     }
 }

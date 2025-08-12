@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\User;
 use App\Models\Admin;
 use App\Models\Student;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
 
     public function index() {
-        return view('admin.dashboard');
+        $users = User::all();
+        $borrowedBooks =  User::with('books')->get();
+        $stdCount = User::count();
+        $bookCount = Book::count();
+        $borrowCount = DB::table('book_user')->count();
+        return view('admin.dashboard',compact('users','borrowedBooks' , 'stdCount', 'bookCount', 'borrowCount'));
     }
 
     public function edit(Admin $admin) {

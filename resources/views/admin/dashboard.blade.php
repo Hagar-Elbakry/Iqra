@@ -7,12 +7,12 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">Students</h3>
+                                <h3 class="mb-0">{{ $stdCount }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-success ">
-                                <span class="mdi mdi-arrow-top-right icon-item"></span>
+                            <div class="icon {{ $stdCount > 10 ? 'icon-box-success' : 'icon-box-danger' }}">
+                                <span class="mdi {{ $stdCount > 10 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left' }}"></span>
                             </div>
                         </div>
                     </div>
@@ -26,12 +26,12 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">Books</h3>
+                                <h3 class="mb-0">{{ $bookCount }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-success">
-                                <span class="mdi mdi-arrow-top-right icon-item"></span>
+                            <div class="icon {{ $bookCount > 10 ? 'icon-box-success' : 'icon-box-danger' }}">
+                                <span class="mdi {{ $bookCount > 10 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left' }}"></span>
                             </div>
                         </div>
                     </div>
@@ -45,12 +45,12 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">Borrowed Books</h3>
+                                <h3 class="mb-0">{{ $borrowCount }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-danger">
-                                <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                            <div class="icon {{ $borrowCount > 10 ? 'icon-box-success' : 'icon-box-danger' }}">
+                                <span class="mdi {{ $borrowCount > 10 ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left' }}"></span>
                             </div>
                         </div>
                     </div>
@@ -68,30 +68,35 @@
                     <table class="table table-dark">
                         <thead>
                         <tr>
-                            <th> # </th>
-                            <th>Avatar</th>
-                            <th> Name </th>
-                            <th> Email </th>
-                            <th> Created At </th>
-                            <th>Updated At</th>
-                            <th>Action</th>
+                            <th class="text-center"> # </th>
+                            <th class="text-center">Avatar</th>
+                            <th class="text-center"> Name </th>
+                            <th class="text-center"> Email </th>
+                            <th class="text-center"> Created At </th>
+                            <th class="text-center">Updated At</th>
+                            <th class="text-center">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach ($users as $user)
                         <tr>
-                            <td> 1 </td>
-                            <td><img src="{{asset('assets/dashboard/images/faces-clipart/pic-1.png')}}" alt="image" /></td>
-                            <td> Herman Beck </td>
-                            <td> h@gmail.com </td>
-                            <td> May 15, 2015 </td>
-                            <td> May 15, 2015 </td>
-                            <td>
-                                <div class="col-sm-6 col-md-4 col-lg-3">
-                                    <a href="/admin/students/1" style="display: inline-flex; align-items: center; gap: 5px">
-                                        <i class="mdi mdi-eye"></i>  View</a>
-                                </div>
+                            <td class="text-center"> {{ $user->id }} </td>
+                            @if($user->avatar)
+                            <td class="text-center"><img src="{{asset('storage/'.$user->avatar)}}" alt="image" /></td>
+                            @else
+                            <td class="text-center">-</td>
+                            @endif
+                            <td class="text-center"> {{ $user->name }} </td>
+                            <td class="text-center"> {{ $user->email }} </td>
+                            <td class="text-center"> {{ $user->created_at->format('M d, Y') }} </td>
+                            <td class="text-center"> {{ $user->updated_at->format('M d, Y') }} </td>
+                            <td class="text-center">
+                                <a href="{{ route('admin.student', $user->id) }}" style="display: inline-flex; align-items: center; gap: 5px;">
+                                    <i class="mdi mdi-eye"></i> View
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -113,23 +118,35 @@
                                 <th> Category </th>
                                 <th> Borrow Date </th>
                                 <th> Return Date </th>
-                                <th> Is Returned </th>
+                                <th class="text-center"> Is Returned </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <img src="{{asset('assets/dashboard/images/faces/face1.jpg')}}" alt="image" />
-                                    <span class="pl-2">Henry Klein</span>
-                                </td>
-                                <td> Divergent </td>
-                                <td> Drama </td>
-                                <td> 04 Dec 2019 </td>
-                                <td> 04 Dec 2019 </td>
-                                <td>
-                                    <div class="badge badge-outline-success">Yes</div>
-                                </td>
-                            </tr>
+
+                            @foreach($borrowedBooks as $user)
+                                @if($user->books->isNotEmpty())
+                                    @foreach($user->books as $book)
+                                        <tr>
+                                            <td>
+                                                @if($user->avatar)
+                                                <img src="{{ asset('storage/'.$user->avatar) }}" alt="image" />
+                                                @endif
+                                                <span class="pl-2">{{ $user->name }}</span>
+                                            </td>
+                                            <td>{{ $book->title }}</td>
+                                            <td>{{ $book->category->name ?? 'N/A' }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($book->pivot->borrow_date)->format('M d, Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($book->pivot->return_date)->format('M d, Y') }}</td>
+                                            <td class="text-center">
+                                                <div class="badge {{ $book->pivot->is_returned ? 'badge-outline-success' : 'badge-outline-danger' }}">
+                                                    {{ $book->pivot->is_returned ? 'Yes' : 'No' }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    @endif
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>

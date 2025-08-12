@@ -24,8 +24,8 @@
             @foreach($books as $book)
             <tr>
                 <td class="text-center">{{$book->title}}</td>
-                <td class="text-center">{{ $book->pivot->borrow_date ? $book->pivot->borrow_date : '-' }}</td>
-                <td class="text-center">{{ $book->pivot->return_date ? $book->pivot->return_date : '-' }}</td>
+                <td class="text-center">{{ $book->pivot->borrow_date ? \Carbon\Carbon::parse($book->pivot->borrow_date)->format('M d, Y') : '-' }}</td>
+                <td class="text-center">{{ $book->pivot->return_date ? \Carbon\Carbon::parse($book->pivot->return_date)->format('M d, Y') : '-' }}</td>
                 <td class="text-center">
                     @if($book->pivot->is_returned)
                         <i class="bi bi-check-circle-fill text-success"></i>
