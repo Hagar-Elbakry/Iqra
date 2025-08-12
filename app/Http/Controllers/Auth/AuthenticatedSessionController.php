@@ -66,7 +66,7 @@ class AuthenticatedSessionController extends Controller implements HasMiddleware
 
         if(Auth::guard('admin')->attempt(['email' => request('email'), 'password' => request('password')])) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/admin/dashboard');
         }
 
         return back()->withErrors([
