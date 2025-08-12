@@ -23,23 +23,27 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($books as $book)
                             <tr>
-                                <td> 1 </td>
-                                <td> Divergent </td>
-                                <td><img src="{{asset('assets/dashboard/images/faces-clipart/pic-1.png')}}" alt="image" /></td>
-                                <td>Four</td>
-                                <td>10</td>
-                                <td> May 15, 2015 </td>
-                                <td> May 15, 2015 </td>
+                                <td> {{$book->id}} </td>
+                                <td> {{$book->title}} </td>
+                                <td><img src="{{asset('storage/'.$book->image)}}" alt="image" /></td>
+                                <td>{{$book->author}}</td>
+                                <td>{{$book->quantity}}</td>
+                                <td> {{$book->created_at}} </td>
+                                <td> {{$book->updated_at}} </td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="/admin/books/1/edit" class="btn btn-outline-warning btn-sm">Edit</a>
-                                        <form>
-                                            <button type="button" class="btn btn-outline-danger btn-sm ml-2">Delete</button>
+                                        <a href="{{route('admin.books.edit', $book)}}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                        <form action="{{route('admin.books.destroy', $book)}}" method="POST" id="delete_book">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger btn-sm ml-2" form="delete_book">Delete</button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

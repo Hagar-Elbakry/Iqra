@@ -22,12 +22,12 @@
                                         class="icon icon-ns-arrow-right"></i></a>
                             </div>
                         </div>
-                        <img src="{{ asset($book->image) }}" alt="banner" class="banner-image">
+                        <img src="{{asset('storage/'.$book->image)}}" alt="banner" class="banner-image">
                     </div>
                     @endforeach
-                    
 
-                    
+
+
 
                 </div>
 

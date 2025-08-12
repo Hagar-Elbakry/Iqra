@@ -12,7 +12,7 @@ class HomeController extends Controller
         $banner = Book::whereIn('title', [
                             'Life of the wild',
                             'Birds Gonna be happy'])->get();
-        $books = Book::whereIn('id',[3,6,5,10])->get();
+        $books = Book::query()->inRandomOrder()->limit(4)->get();
         $Is_home = true;
         return view('home',compact('banner','books','Is_home'));
     }

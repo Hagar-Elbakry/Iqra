@@ -17,7 +17,7 @@
                         <div class="col-md-3">
                             <div class="product-item">
                                 <figure class="product-style">
-                                    <a href="{{ route('books.show', $book->id) }}"><img src="{{ asset($book->image) }}" alt="Books" class="product-item"></a>
+                                    <a href="{{ route('books.show', $book->id) }}"><img src="{{ asset('storage/'.$book->image) }}" alt="Books" class="product-item"></a>
                                     @if($book->quantity == 0)
                                         <button type="submit" class="out-of-stock">Out of stock</button>
                                     @else
@@ -35,9 +35,9 @@
                             </div>
                         </div>
                         @endforeach
-                        
 
-                        
+
+
 
                     </div><!--ft-books-slider-->
                 </div><!--grid-->
