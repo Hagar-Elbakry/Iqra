@@ -77,8 +77,9 @@
 
                     <form method="POST" action="/logout/admin">
                         @csrf
-                        <button type="submit" class="dropdown-item preview-item"
-                                style="all:unset ; cursor: pointer; display: flex; align-items: center; width: 100%;">
+                        <button type="submit"
+                                class="dropdown-item preview-item"
+                                style="all:unset; cursor:pointer; display:flex; align-items:center; width:100%; padding: 0.25rem 1rem; color: inherit; text-decoration: none;">
                             <div class="preview-thumbnail">
                                 <div class="preview-icon bg-dark rounded-circle">
                                     <i class="mdi mdi-logout text-danger"></i>
@@ -89,6 +90,7 @@
                             </div>
                         </button>
                     </form>
+
                 </div>
             </li>
         </ul>
