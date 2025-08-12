@@ -13,20 +13,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/login/admin', [AuthenticatedSessionController::class, 'showAdminLoginForm']);
-Route::get('/register/admin', [RegisteredUserController::class, 'showAdminRegistrationForm']);
-Route::post('/login/admin', [AuthenticatedSessionController::class, 'adminLogin']);
-Route::post('/register/admin', [RegisteredUserController::class, 'storeAdmin']);
-Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/students/{user}', StudentController::class)->name('admin.student');
-Route::post('/admin/students/search', [StudentController::class, 'search'])->name('admin.students.search');
-Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books');
-Route::get('/admin/books/create', [BookController::class, 'create'])->name('admin.books.create');
-Route::post('/admin/books', [BookController::class, 'store'])->name('admin.books.store');
-Route::get('/admin/books/{book}/edit', [BookController::class, 'edit'])->name('admin.books.edit');
-Route::post('/admin/books/{book}', [BookController::class, 'update'])->name('admin.books.update');
-Route::delete('/admin/books/{book}', [BookController::class, 'destroy'])->name('admin.books.destroy');
+Route::get('/login/admin', [AuthenticatedSessionController::class, 'showAdminLoginForm'])->middleware(['web','guest:admin']);
+Route::get('/register/admin', [RegisteredUserController::class, 'showAdminRegistrationForm'])->middleware(['web','guest:admin']);
+Route::post('/login/admin', [AuthenticatedSessionController::class, 'adminLogin'])->middleware(['web','guest:admin']);
+Route::post('/logout/admin', [AuthenticatedSessionController::class, 'destroyAdmin'])->middleware(['web','auth:admin']);
+Route::post('/register/admin', [RegisteredUserController::class, 'storeAdmin'])->middleware(['web','guest:admin']);
+Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit')->middleware(['web','auth:admin']);
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['web','auth:admin'])->name('admin.dashboard');
+Route::get('/admin/students/{user}', StudentController::class)->middleware(['web','auth:admin'])->name('admin.student');
+Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books')->middleware(['web','auth:admin']);
+Route::get('/admin/books/create', [BookController::class, 'create'])->middleware(['web','auth:admin'])->name('admin.books.create');
+Route::post('/admin/books', [BookController::class, 'store'])->middleware(['web','auth:admin'])->name('admin.books.store');
+Route::get('/admin/books/{book}/edit', [BookController::class, 'edit'])->middleware(['web','auth:admin'])->name('admin.books.edit');
+Route::post('/admin/books/{book}', [BookController::class, 'update'])->middleware(['web','auth:admin'])->name('admin.books.update');
+Route::delete('/admin/books/{book}', [BookController::class, 'destroy'])->middleware(['web','auth:admin'])->name('admin.books.destroy');
 
 Route::get('/books',[HomeController::class,'index'])->name('books.index');
 Route::get('/books/{book}', [HomeController::class, 'show'])->name('books.show');
