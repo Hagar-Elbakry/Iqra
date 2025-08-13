@@ -54,5 +54,5 @@ Iqra is a web-based library management system built with Laravel, designed to fa
 
 ## Usage
 
-- **Admin Panel:** Access `/admin/login` for admin dashboard and management.
-- **User Panel:** Access `/login` and `/register` for student features.
+- **Admin Panel:** Access `/admin/dashboard` for admin dashboard and management.
+- **User Panel:** Access `/dashboard`  for student features.
