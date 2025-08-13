@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
     Route::get('register', [RegisteredAdminController::class, 'create'])
@@ -36,27 +38,48 @@ Route::prefix('admin')->middleware('guest:admin')->group(function () {
 //        ->name('password.store');
 });
 
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
-//    Route::get('verify-email', EmailVerificationPromptController::class)
-//        ->name('verification.notice');
+Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function () {
+    // Route::get('verify-email', EmailVerificationPromptController::class)
+    //     ->name('verification.notice');
 
-//    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-//        ->middleware(['signed', 'throttle:6,1'])
-//        ->name('verification.verify');
+    // Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
+    //     ->middleware(['signed', 'throttle:6,1'])
+    //     ->name('verification.verify');
 
-//    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-//        ->middleware('throttle:6,1')
-//        ->name('verification.send');
+    // Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+    //     ->middleware('throttle:6,1')
+    //     ->name('verification.send');
 
-//    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-//        ->name('password.confirm');
+    // Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
+    //     ->name('password.confirm');
 
-    //Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+    // Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    //Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('dashboard',  'index')->name('dashboard');
+        Route::get('profile', 'ProfileIndex')->name('profile');
+        Route::patch('profile', 'ProfileUpdate')->name('profile.update');
+        Route::put('password', 'PasswordUpdate')->name('password.update');
+    });
 
-    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::controller(StudentController::class)->group(function () {
+        Route::get('students/{user}','__invoke')->name('student');
+        Route::post('students/search',  'search')->name('students.search');
+    });
+
+    Route::controller(BookController::class)->group(function () {
+        Route::get('books',  'index')->name('books');
+        Route::get('books/create',  'create')->name('books.create');
+        Route::post('books', 'store')->name('books.store');
+        Route::get('books/{book}/edit',  'edit')->name('books.edit');
+        Route::patch('books/{book}',  'update')->name('books.update');
+        Route::delete('books/{book}',  'destroy')->name('books.destroy');
+    });
 
     Route::post('logout', [LoginController::class, 'destroy'])
-        ->name('admin.logout');
+        ->name('logout');
 });
+
+
+
+

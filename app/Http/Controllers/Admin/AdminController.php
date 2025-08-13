@@ -25,9 +25,7 @@ class AdminController extends Controller
         return view('admin.dashboard',compact('users','borrowedBooks' , 'stdCount', 'bookCount', 'borrowCount'));
     }
 
-    public function edit(Admin $admin) {
-        return view ('admin.edit');
-    }
+
     public function ProfileIndex(){
         $admin = Auth::guard('admin')->user();
         return view('admin.profile.index',compact('admin'));

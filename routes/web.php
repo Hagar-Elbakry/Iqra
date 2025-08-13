@@ -11,18 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit')->middleware('auth:admin');
-Route::get('/admin/students/{user}', StudentController::class)->middleware('auth:admin')->name('admin.student');
-Route::post('/admin/students/search', [StudentController::class, 'search'])->middleware('auth:admin')->name('admin.students.search');
-Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books')->middleware('auth:admin');
-Route::get('/admin/books/create', [BookController::class, 'create'])->middleware('auth:admin')->name('admin.books.create');
-Route::post('/admin/books', [BookController::class, 'store'])->middleware('auth:admin')->name('admin.books.store');
-Route::get('/admin/books/{book}/edit', [BookController::class, 'edit'])->middleware('auth:admin')->name('admin.books.edit');
-Route::patch('/admin/books/{book}', [BookController::class, 'update'])->middleware('auth:admin')->name('admin.books.update');
-Route::delete('/admin/books/{book}', [BookController::class, 'destroy'])->middleware('auth:admin')->name('admin.books.destroy');
-Route::get('/admin/profile',[AdminController::class, 'ProfileIndex'])->middleware('auth:admin')->name('admin.profile');
-Route::post('/admin/profile',[AdminController::class, 'ProfileUpdate'])->middleware('auth:admin')->name('admin.profile.update');
-Route::post('/admin/password',[AdminController::class, 'PasswordUpdate'])->middleware('auth:admin')->name('admin.password.update');
+
 
 
 Route::get('/books',[HomeController::class,'index'])->name('books.index');

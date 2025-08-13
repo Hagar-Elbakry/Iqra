@@ -17,11 +17,11 @@
                     <p class="card-description"> Update your profile </p>
                         <form class="forms-sample" method="post" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
                             @csrf
+                            @method('patch')
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Image</label><br>
                                 @if($admin->avatar)
                                 <img src="{{ asset('storage/' . $admin->avatar) }}" width="100" height="100" class="rounded-circle"><br>
-                                {{-- check box for delete image --}}
                                 <input type="checkbox" name="remove_avatar" value="1">
                                 <label for="remove_avatar" style="padding-top: 4px">Remove current image</label>
                                 @else
@@ -56,6 +56,7 @@
                     <p class="card-description">change your password</p>
                     <form class="forms-sample" method="post" action="{{ route('admin.password.update') }}">
                         @csrf
+                        @method('put')
                     <div class="form-group">
                         <label for="exampleInputPassword1">Current Password</label>
                         <input type="password" name="current_password" class="form-control" id="exampleInputPassword1" placeholder="Password">
