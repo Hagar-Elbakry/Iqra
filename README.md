@@ -2,14 +2,14 @@
 
 
 Iqra is a web-based library management system built with Laravel, designed to facilitate book borrowing and management for students and administrators.
-
+---
 ## Authors
 
 - Hagar Abdelsattar Elbakry
 - Menna Baligh Hamdy
 
 ## Features
-
+---
 ### For Admins
 
 - **Authentication:** Register at `/admin/register` and login at `/admin/login`.
@@ -28,7 +28,7 @@ Iqra is a web-based library management system built with Laravel, designed to fa
 - **Dashboard:** See all borrowed books with details (borrow date, return date, status).
 - **Profile Management:** Update own profile and change password.
 
-
+---
 ## Getting Started
 
 1. **Clone the repository**
@@ -56,7 +56,7 @@ Iqra is a web-based library management system built with Laravel, designed to fa
    ```sh
    php artisan serve
    ```
-
+---
 ## Usage
 
 - **Admin Panel:** Access `/admin/dashboard` for admin dashboard and management.
