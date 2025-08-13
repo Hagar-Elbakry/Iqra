@@ -38,6 +38,10 @@ Iqra is a web-based library management system built with Laravel, designed to fa
    ```
 3. **Configure environment**
    - Copy `.env.example` to `.env` and set up your database credentials.
+   - Run the application key generate command:
+    ```bash
+    php artisan key:generate
+
 4. **Run migrations**
    ```sh
    php artisan migrate
