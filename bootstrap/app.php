@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(function () {
-            if(request()->is('admin/*')) {
+            if(request()->is('admin/*') && Auth::guard('web')->check()) {
+                abort(403,"Unauthorized Access");
+            }
+            elseif(request()->is('admin/*')) {
                 return '/admin/login';
             } else {
                 return '/login';

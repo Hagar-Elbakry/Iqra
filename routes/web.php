@@ -9,24 +9,24 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', HomeController::class)->name('home');
 
-
-
-
-Route::get('/books',[HomeController::class,'index'])->name('books.index');
-Route::get('/books/{book}', [HomeController::class, 'show'])->name('books.show');
-Route::get('/dashboard', [BorrowController::class, 'index'])
-->middleware(['auth', 'verified'])->name('dashboard');
-Route::post('/borrow/{book}', [BorrowController::class, 'borrow'])->middleware('auth')->name('borrow');
-Route::post('/return/{book}', [BorrowController::class, 'return'])->middleware('auth')->name('return');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', '__invoke')->name('home');
+    Route::get('/books','index')->name('books.index');
+    Route::get('/books/{book}',  'show')->name('books.show');
 });
 
+Route::controller(BorrowController::class)->middleware('auth')->group(function () {
+    Route::get('/dashboard',  'index')->name('dashboard');
+    Route::post('/borrow/{book}', 'borrow')->name('borrow');
+    Route::post('/return/{book}',  'return')->name('return');
+});
+
+Route::controller(ProfileController::class)->prefix('profile')->middleware('auth')->name('profile.')->group(function () {
+    Route::get('/',  'edit')->name('edit');
+    Route::patch('/',  'update')->name('update');
+    Route::delete('/',  'destroy')->name('destroy');
+});
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin-auth.php';
